@@ -24,7 +24,7 @@ func Init() {
 func TestGetUserList() {
 	rsp, err := userClient.GetUserList(context.Background(), &proto.PageInfo{
 		Pn:    1,
-		PSize: 5,
+		PSize: 20,
 	})
 	if err != nil {
 		panic(err)
@@ -46,7 +46,7 @@ func TestCreateUser() {
 	for i := 0; i < 10; i++ {
 		rsp, err := userClient.CreateUser(context.Background(), &proto.CreateUserInfo{
 			NickName: fmt.Sprintf("bobby%d", i),
-			Mobile:   fmt.Sprintf("1878222222%d", i),
+			Mobile:   fmt.Sprintf("1878333333%d", i),
 			PassWord: "admin123",
 		})
 		if err != nil {
@@ -58,7 +58,7 @@ func TestCreateUser() {
 
 func main() {
 	Init()
-	//TestCreateUser()
+	// TestCreateUser()
 	TestGetUserList()
 
 	conn.Close()
