@@ -12,6 +12,7 @@ import (
 
 	"github.com/anaskhan96/go-password-encoder"
 	"github.com/golang/protobuf/ptypes/empty"
+	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"gorm.io/gorm"
@@ -67,14 +68,13 @@ func Paginate(page, pageSize int) func(db *gorm.DB) *gorm.DB {
  * 获取用户列表
  */
 func (s *UserServer) GetUserList(ctx context.Context, req *proto.PageInfo) (*proto.UserListResponse, error) {
-	fmt.Println("<<get user list>>")
 	var users []model.User
 	result := global.DB.Find(&users)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 
-	fmt.Println("用户列表")
+	zap.S().Infof("获取用户列表")
 	rsp := &proto.UserListResponse{}
 	rsp.Total = int32(result.RowsAffected)
 

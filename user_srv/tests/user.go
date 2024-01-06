@@ -14,7 +14,7 @@ var conn *grpc.ClientConn
 
 func Init() {
 	var err error
-	conn, err = grpc.Dial("127.0.0.1:50051", grpc.WithInsecure())
+	conn, err = grpc.Dial("127.0.0.1:39611", grpc.WithInsecure())
 	if err != nil {
 		panic(err)
 	}
@@ -56,10 +56,10 @@ func TestCreateUser() {
 	}
 }
 
-func main() {
-	Init()
-	// TestCreateUser()
-	TestGetUserList()
+// func main() {
+// 	Init()
+// 	// TestCreateUser()
+// 	TestGetUserList()
 
-	conn.Close()
-}
+// 	conn.Close()
+// }
